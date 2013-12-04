@@ -16,7 +16,7 @@ nova-pkgs:
       - sls: openstack.sysctl
       - sls: openstack.nova-compute.drive
       - sls: openstack.nova-compute.interfaces
-      - sls: openstack.nova-compute.kvm      
+      - sls: openstack.nova-compute.kvm
       - pkgrepo: havana
 
 nova-state-path:
