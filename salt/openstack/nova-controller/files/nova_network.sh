@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Author: Alen Komljen <alen.komljen@live.com>
+#===============================================================================
+#
+# AUTHOR: Alen Komljen <alen.komljen@live.com>
+#
 #===============================================================================
 fixed_range_v4="{{ salt['pillar.get']('nova:network:custom:private_ip_range') }}"
 bridge_interface="{{ salt['pillar.get']('nova:network:flat_network_bridge') }}"

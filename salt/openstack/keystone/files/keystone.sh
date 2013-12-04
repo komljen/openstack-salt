@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Author: Alen Komljen <alen.komljen@live.com>
+#===============================================================================
+#
+# AUTHOR: Alen Komljen <alen.komljen@live.com>
+#
 #===============================================================================
 region="{{ salt['pillar.get']('keystone:service:region') }}"
 keystone_host="{{ salt['network.ip_addrs']('eth0')[0] }}"
