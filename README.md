@@ -1,6 +1,8 @@
 Salt OpenStack
 ==============
 
+Salt for OpenStack deployment:
+
 ```
 ├── pillar
 │   ├── data
@@ -81,5 +83,6 @@ Salt OpenStack
     ├── overstate.sls
     └── top.sls
 ```
+Salt Minion
+==============
 
-Salt for OpenStack deployment
