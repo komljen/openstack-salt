@@ -1,7 +1,7 @@
 Salt OpenStack
 ==============
 
-Salt for OpenStack deployment:
+Salt states for OpenStack Havana release multi-node deployments. This deployment doesn't support HA, which means one controller node and multiple compute nodes. It will use FlatDHCP networking. Salt states tree:
 
 ```
 ├── pillar
@@ -86,3 +86,53 @@ Salt for OpenStack deployment:
 Salt Minion
 ==============
 
+There are three different salt-minion roles: mysql, nova-controller and nova-compute. First two can be assigned to one node. Salt minion nova controller configuration:
+
+```
+master: ip_address
+
+grains:
+  roles:
+    - nova-controller
+    - mysql
+
+mine_functions:
+  network.ip_addrs:
+    - eth0
+  network.interfaces: []
+  test.ping: []
+  grains.item:
+    - public_ips
+    - public_ip
+```
+Salt minion nova compute configuration:
+
+```
+master: ip_address
+
+grains:
+  roles:
+    - nova-compute
+
+mine_functions:
+  network.ip_addrs:
+    - eth0
+  network.interfaces: []
+  test.ping: []
+  grains.item:
+    - public_ips
+    - public_ip
+```
+
+Deployment
+==============
+
+All OpenStack configuration otpions are definied in pillars. After all minions are ready you need to run overstate (http://docs.saltstack.com/ref/states/overstate.html):
+
+```
+rm -rf /srv/salt /srv/pillar
+cd /srv && git clone https://github.com/komljen/salt-openstack.git .
+salt-run state.over
+```
+
+For bare metal salt provisioning you can use Cobbler (https://github.com/komljen/cobbler-salt).
